@@ -36,7 +36,6 @@ namespace EVDS.Services.Concrete
 
             foreach (var item in serieRatingData)
             {
-             
                 var dateValue = item.Properties().FirstOrDefault(m => m.Name == "Tarih").Value.ToString();
 
                 foreach (var property in item.Properties())
@@ -52,12 +51,9 @@ namespace EVDS.Services.Concrete
                         serieRatingList.Add(newSerieRating);
                     }
                 }
-
             }
 
-
             return serieRatingList;
-
         }
     }
 }
