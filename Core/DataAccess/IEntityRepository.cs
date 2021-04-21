@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Core.DataAccess
 {
@@ -11,8 +12,12 @@ namespace Core.DataAccess
         T GetById(int id);
 
         IList<T> GetList(Expression<Func<T, bool>> filter = null);
+        Task<IList<T>> GetListAsync(Expression<Func<T, bool>> filter = null);
+
         T Add(T entity);
         IList<T> AddRange(IList<T> entities);
+        Task<IList<T>> AddRangeAsync(IList<T> entities);
+
         IList<T> UpdateRange(IList<T> entities);
         int Count(Expression<Func<T, bool>> filter = null);
         T Update(T entity);

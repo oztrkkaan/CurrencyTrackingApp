@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogic.Abstract;
 using EVDS.Constants.Enums;
 using EVDS.Entities;
 using EVDS.Services;
@@ -17,14 +18,15 @@ namespace WEBUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        ICurrencyService _currencyService;
+        public HomeController(ICurrencyService currencyService)
         {
-            _logger = logger;
+            _currencyService = currencyService;
         }
 
         public IActionResult Index()
         {
+            var x =_currencyService.SyncCurrencyList();
 
             return View();
         }

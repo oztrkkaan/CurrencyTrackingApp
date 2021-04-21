@@ -64,6 +64,15 @@ namespace Core.DataAccess.EntityFramework
                 return entities;
             }
         }
+        public async Task<IList<TEntity>> AddRangeAsync(IList<TEntity> entities)
+        {
+            using (var context = new TContext())
+            {
+               context.Set<TEntity>().AddRangeAsync(entities);
+                context.SaveChangesAsync();
+                return entities;
+            }
+        }
         public IList<TEntity> UpdateRange(IList<TEntity> entities)
         {
             using (var context = new TContext())

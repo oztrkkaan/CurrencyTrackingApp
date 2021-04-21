@@ -1,5 +1,6 @@
 ﻿using EVDS.Constants.Enums;
 using EVDS.Entities;
+using EVDS.Services.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace EVDS.Services.Abstraction
 {
-    public interface ICurrencyRatingService
+    public interface IEvdsCurrencyService
     {
-        Task<IList<CurrencyRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType);
-
+        Task<IList<EvdsCurrency>> GetList(ResponseTypes responseType = ResponseTypes.Json);
     }
 }

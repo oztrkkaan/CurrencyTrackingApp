@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EVDS.Entities
 {
-    public class CurrencyRating
+    public class EvdsCurrencyRating
     {
         public string SerieCode { get; set; }
         public DateTime Date { get; set; }

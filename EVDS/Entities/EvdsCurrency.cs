@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EVDS.Entities
 {
-    public class CurrencyResponse
+    public class EvdsCurrency
     {
         public string SERIE_CODE { get; set; }
         public string DATAGROUP_CODE { get; set; }
