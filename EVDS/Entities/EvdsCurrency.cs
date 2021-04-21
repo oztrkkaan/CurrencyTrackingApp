@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EVDS.Entities
+﻿namespace EVDS.Entities
 {
     public class EvdsCurrency
     {

@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BusinessLogic.DependencyResolvers.Autofac;
-using EVDS.DependencyResolvers.Autofac;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace WEBUI
 {
@@ -26,7 +19,7 @@ namespace WEBUI
            .ConfigureContainer<ContainerBuilder>(builder =>
            {
                builder.RegisterModule(new AutofacBusinessModule());
-             //  builder.RegisterModule(new AutofacEvdsModule());
+               //  builder.RegisterModule(new AutofacEvdsModule());
 
            })
                .ConfigureWebHostDefaults(webBuilder =>

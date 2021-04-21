@@ -5,7 +5,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EVDS.Services.Concrete
@@ -27,7 +26,7 @@ namespace EVDS.Services.Concrete
             string contentString = await response.Content.ReadAsStringAsync();
             try
             {
-              return  JsonConvert.DeserializeObject<List<EvdsCurrency>>(contentString);
+                return JsonConvert.DeserializeObject<List<EvdsCurrency>>(contentString);
             }
             catch (Exception ex)
             {

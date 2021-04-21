@@ -1,9 +1,6 @@
 ﻿using DataAccess.Concrete.Contexts.EntityFramework.Mappings;
 using Entities.Concrate;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DataAccess.Concrete.Contexts.EntityFramework
 {
@@ -21,5 +18,5 @@ namespace DataAccess.Concrete.Contexts.EntityFramework
         }
     }
 
-    
+
 }

@@ -68,7 +68,7 @@ namespace Core.DataAccess.EntityFramework
         {
             using (var context = new TContext())
             {
-               context.Set<TEntity>().AddRangeAsync(entities);
+                context.Set<TEntity>().AddRangeAsync(entities);
                 context.SaveChangesAsync();
                 return entities;
             }

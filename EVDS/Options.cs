@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EVDS
+﻿namespace EVDS
 {
     public static class Options
     {

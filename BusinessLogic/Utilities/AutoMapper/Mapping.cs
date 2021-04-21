@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
-using Entities.Concrate;
-using EVDS.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic.Utilities.AutoMapper
 {
@@ -25,7 +21,7 @@ namespace BusinessLogic.Utilities.AutoMapper
         public class MappingProfile : Profile
         {
             public MappingProfile()
-            {}
+            { }
         }
 
     }

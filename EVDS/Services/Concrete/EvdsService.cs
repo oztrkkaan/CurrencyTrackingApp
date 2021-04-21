@@ -1,7 +1,4 @@
 ﻿using EVDS.Services.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EVDS.Services.Concrete
 {
@@ -18,6 +15,6 @@ namespace EVDS.Services.Concrete
 
         IEvdsCurrencyService IEvdsService.CurrencyService => new EvdsCurrencyManager();
         IEvdsCurrencyRatingService IEvdsService.CurrencyRatingService => new EvdsCurrencyRatingManager();
-    
+
     }
 }

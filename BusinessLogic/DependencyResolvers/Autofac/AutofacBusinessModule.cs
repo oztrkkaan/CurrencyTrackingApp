@@ -5,9 +5,6 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.Contexts.EntityFramework;
 using EVDS.Services.Abstraction;
 using EVDS.Services.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BusinessLogic.DependencyResolvers.Autofac
 {

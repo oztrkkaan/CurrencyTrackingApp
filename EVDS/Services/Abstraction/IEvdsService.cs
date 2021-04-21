@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EVDS.Services.Abstraction
+﻿namespace EVDS.Services.Abstraction
 {
     public interface IEvdsService
     {
