@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace EVDS.Services.Concrete
 {
-    public class SerieManager : ISerieService
+    public class CurrencyManager : ICurrencyService
     {
 
-        public async Task<IList<SerieResponse>> GetList(ResponseTypes responseType = ResponseTypes.Json)
+        public async Task<IList<CurrencyResponse>> GetList(ResponseTypes responseType = ResponseTypes.Json)
         {
             HttpClient client = new HttpClient();
 
@@ -25,7 +25,7 @@ namespace EVDS.Services.Concrete
             HttpResponseMessage response = await client.GetAsync(uri);
             string contentString = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<List<SerieResponse>>(contentString);
+            return JsonConvert.DeserializeObject<List<CurrencyResponse>>(contentString);
         }
     }
 }

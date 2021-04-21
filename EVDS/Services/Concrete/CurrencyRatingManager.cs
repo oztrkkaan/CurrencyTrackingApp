@@ -13,9 +13,9 @@ using System.Threading.Tasks;
 
 namespace EVDS.Services.Concrete
 {
-    public class SerieRatingManager : ISerieRatingService
+    public class CurrencyRatingManager : ICurrencyRatingService
     {
-        public async Task<IList<SerieRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType)
+        public async Task<IList<CurrencyRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType)
         {
             HttpClient client = new HttpClient();
 
@@ -31,8 +31,8 @@ namespace EVDS.Services.Concrete
             var parsedJson = JObject.Parse(contentString);
             var serieRatingData = parsedJson.SelectToken("items").Children<JObject>();
 
-            IList<SerieRating> serieRatingList = new List<SerieRating>();
-            SerieRating newSerieRating = new SerieRating();
+            IList<CurrencyRating> serieRatingList = new List<CurrencyRating>();
+            CurrencyRating newSerieRating = new CurrencyRating();
 
             foreach (var item in serieRatingData)
             {
@@ -43,7 +43,7 @@ namespace EVDS.Services.Concrete
                     var regularPropertyName = property.Name.Replace("_", ".");
                     if (serieCodes.Any(m => m == regularPropertyName))
                     {
-                        newSerieRating = new SerieRating();
+                        newSerieRating = new CurrencyRating();
                         newSerieRating.Date = DateTime.ParseExact(dateValue, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                         newSerieRating.SerieCode = regularPropertyName;
                         newSerieRating.Rating = (decimal?)property.Value;

@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace EVDS.Services.Concrete
 {
-    public interface ISerieService
+    public interface ICurrencyService
     {
-        Task<IList<SerieResponse>> GetList(ResponseTypes responseType = ResponseTypes.Json);
-
-
+        Task<IList<CurrencyResponse>> GetList(ResponseTypes responseType = ResponseTypes.Json);
     }
 }

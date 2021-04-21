@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace EVDS.Services.Abstraction
 {
-    public interface ISerieRatingService
+    public interface ICurrencyRatingService
     {
-        Task<IList<SerieRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType);
+        Task<IList<CurrencyRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType);
 
     }
 }
