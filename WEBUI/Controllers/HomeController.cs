@@ -3,6 +3,8 @@ using Entities.Dtos;
 using Entities.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using WEBUI.Utilities;
+using WEBUI.Utilities.Toastr;
+using Core.Constants.Enum;
 
 namespace WEBUI.Controllers
 {
@@ -17,6 +19,7 @@ namespace WEBUI.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
@@ -24,7 +27,7 @@ namespace WEBUI.Controllers
         {
             return View();
         }
-   
+
         [HttpPost]
         public IActionResult AddCurrency(AddCurrencyViewModel model)
         {
@@ -34,8 +37,9 @@ namespace WEBUI.Controllers
                 ModelState.ValidateModel(addResult.ValidationErrors, nameof(CurrencyDto));
                 return View(model);
             }
+            this.AddToastrMessage("Başarılı!", addResult.Message, ToastrEnum.Type.Success);
 
-            return RedirectToAction(nameof(CurrencyDetail));
+            return RedirectToAction(nameof(CurrencyDetail), new { currencyId = addResult.Data.Id });
         }
         public IActionResult CurrencyDetail(int currencyId)
         {

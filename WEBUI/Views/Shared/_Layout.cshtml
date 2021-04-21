@@ -1,4 +1,6 @@
-﻿<html lang="tr">
+﻿@using Core.Entities.Toastr
+@using Newtonsoft.Json;
+<html lang="tr">
 <!--begin::Head-->
 <head>
     <base href="">
@@ -9,8 +11,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
-<link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" />
-<link href="~/assets/css/style.bundle.css" rel="stylesheet" />
+    <link href="~/assets/plugins/global/plugins.bundle.css" rel="stylesheet" />
+    <link href="~/assets/css/style.bundle.css" rel="stylesheet" />
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -4264,10 +4266,9 @@
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-   @RenderBody()     
-                    
-    <!--begin::Toolbar-->
-                  
+                    @RenderBody()
+
+                    <!--begin::Toolbar-->
                     <!--end::Post-->
                 </div>
                 <!--end::Content-->
@@ -7052,23 +7053,42 @@
                 </g>
             </svg>
         </span>
-        <!--end::Svg Icon-->
+
     </div>
-    <!--end::Scrolltop-->
-    <!--end::Main-->
-    <!--begin::Javascript-->
-    <!--begin::Global Javascript Bundle(used by all pages)-->
+
     <script src="~/assets/plugins/global/plugins.bundle.js"></script>
     <script src="~/assets/js/scripts.bundle.js"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--begin::Page Custom Javascript(used by this page)-->
+
     <script src="~/assets/js/custom/widgets.js"></script>
     <script src="~/assets/js/custom/modals/create-app.js"></script>
     <script src="~/assets/js/custom/modals/upgrade-plan.js"></script>
-    <!--end::Page Custom Javascript-->
-    <!--end::Javascript-->
+    @if (TempData.ContainsKey("Toastr"))
+    {
+        ToastrOption toastrOption = JsonConvert.DeserializeObject<ToastrOption>(TempData["Toastr"].ToString());
+        if (toastrOption != null)
+        {
+            <script>
+            $(document).ready(function () {
+              toastr.options.closeButton = '@toastrOption.ShowCloseButton';
+                toastr.options.newestOnBottom = '@toastrOption.ShowNewestOnTop';
+                toastr.options.positionClass = 'toast-top-right';
+                toastr.options.progressBar= 'true';
+              @foreach (ToastrMessage message in toastrOption.ToastrMessages)
+              {
+                  string toastTypeValue = message.ToastType.ToString().ToLower();
+                @: var optionsOverride = { /* Add message specific options here */ };
+                if (message.IsSticky)
+                  {
+                  @:optionsOverride.timeOut = 0;
+                  @:optionsOverride.extendedTimeout = 0;
+                }
+                @:toastr['@toastTypeValue']('@message.Message', '@message.Title');
+              }
+            });
+            </script>
+        }
+    }
 </body>
-<!--end::Body-->
 </html>
 
 
