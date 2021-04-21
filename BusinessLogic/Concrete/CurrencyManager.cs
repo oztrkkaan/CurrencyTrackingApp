@@ -1,7 +1,11 @@
 ﻿using BusinessLogic.Abstract;
+using BusinessLogic.Utilities.AutoMapper;
+using BusinessLogic.ValidationRules;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrate;
+using Entities.Dtos;
 using EVDS.Entities;
 using EVDS.Services.Abstraction;
 using System;
@@ -29,9 +33,9 @@ namespace BusinessLogic.Concrete
 
             var existCurrencies = GetList();
 
-            var existSerieCodes = existCurrencies.Data.Select(m => m.SerieCode);
+            var existSerieCodes = existCurrencies.Data.Select(m => m.Code);
             var currenciesToAdd = actualCurrencies.Where(m => !existSerieCodes.Contains(m.SERIE_CODE));
-            var mappedCurrencies = currenciesToAdd.Select(m => new Currency { Name = m.SERIE_NAME, SerieCode = m.SERIE_CODE }).ToList();
+            var mappedCurrencies = currenciesToAdd.Select(m => new Currency { Name = m.SERIE_NAME, Code = m.SERIE_CODE }).ToList();
             var addResult = await AddListAsync(mappedCurrencies);
             if (!addResult.Success)
             {
@@ -49,5 +53,18 @@ namespace BusinessLogic.Concrete
             return new SuccessDataResult<IList<Currency>>(_currencyDal.GetList(filter));
         }
 
+        public IDataResult<Currency> Create(CurrencyDto currencyDto)
+        {
+            var validator = new CurrencyValidator();
+            var validateResult = validator.Validate(currencyDto);
+            if (!validateResult.IsValid)
+            {
+                var errorResults = ValidationHelper.GetErrors(validateResult.Errors);
+                return new ErrorDataResult<Currency>("Para birimi ekleme işlemi başarısız oldu.", errorResults);
+            }
+            var addedCurrency = _currencyDal.Add(Mapping.Mapper.Map<Currency>(currencyDto));
+            return new SuccessDataResult<Currency>(addedCurrency, "Para birimi başarıyla eklendi.");
+
+        }
     }
 }

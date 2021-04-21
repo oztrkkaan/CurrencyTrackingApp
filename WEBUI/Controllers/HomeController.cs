@@ -1,12 +1,14 @@
 ﻿using BusinessLogic.Abstract;
+using Entities.Dtos;
+using Entities.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using WEBUI.Utilities;
 
 namespace WEBUI.Controllers
 {
     public class HomeController : Controller
     {
-     
+
         ICurrencyService _currencyService;
         public HomeController(ICurrencyService currencyService)
         {
@@ -15,8 +17,6 @@ namespace WEBUI.Controllers
 
         public IActionResult Index()
         {
-
-
             return View();
         }
 
@@ -24,6 +24,22 @@ namespace WEBUI.Controllers
         {
             return View();
         }
+   
+        [HttpPost]
+        public IActionResult AddCurrency(AddCurrencyViewModel model)
+        {
+            var addResult = _currencyService.Create(model.CurrencyDto);
+            if (!addResult.Success)
+            {
+                ModelState.ValidateModel(addResult.ValidationErrors, nameof(CurrencyDto));
+                return View(model);
+            }
 
+            return RedirectToAction(nameof(CurrencyDetail));
+        }
+        public IActionResult CurrencyDetail(int currencyId)
+        {
+            return View();
+        }
     }
 }

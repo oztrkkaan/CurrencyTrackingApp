@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Entities.Concrate;
+using Entities.Dtos;
 using System;
 
 namespace BusinessLogic.Utilities.AutoMapper
@@ -21,7 +23,11 @@ namespace BusinessLogic.Utilities.AutoMapper
         public class MappingProfile : Profile
         {
             public MappingProfile()
-            { }
+            {
+                CreateMap<Currency, CurrencyDto>();
+                CreateMap<CurrencyDto, Currency>();
+
+            }
         }
 
     }

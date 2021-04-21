@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrate;
+using Entities.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,6 +10,8 @@ namespace BusinessLogic.Abstract
     {
         Task<IDataResult<IList<Currency>>> SyncCurrencyList();
 
+        IDataResult<Currency> Create(CurrencyDto currencyDto);
+      
 
     }
 }

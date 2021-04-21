@@ -12,7 +12,8 @@ namespace DataAccess.Concrete.Contexts.EntityFramework.Mappings
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id);
             builder.Property(p => p.Name);
-            builder.Property(p => p.SerieCode);
+            builder.Property(p => p.Code);
+            builder.Property(p => p.OperationType);
         }
     }
 }
