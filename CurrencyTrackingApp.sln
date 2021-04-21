@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EVDS", "EVDS\EVDS.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{595C4AD4-2CF8-45B1-9543-773C740ED2C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{EC121A2B-9E5A-4D48-9DB7-C97108AA6AC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{595C4AD4-2CF8-45B1-9543-773C740ED2C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{595C4AD4-2CF8-45B1-9543-773C740ED2C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{595C4AD4-2CF8-45B1-9543-773C740ED2C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC121A2B-9E5A-4D48-9DB7-C97108AA6AC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC121A2B-9E5A-4D48-9DB7-C97108AA6AC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC121A2B-9E5A-4D48-9DB7-C97108AA6AC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC121A2B-9E5A-4D48-9DB7-C97108AA6AC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
