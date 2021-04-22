@@ -20,7 +20,7 @@ namespace BusinessLogic.ValidationRules
         }
         private bool validOperationType(string value)
         {
-            return CurrencyEnum.CurrencyTypeList().Any(m => m.Value == value);
+            return CurrencyEnum.CurrencyTypeList.Any(m => m.Value == value);
         }
     }
 }

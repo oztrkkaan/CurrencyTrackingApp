@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace DataAccess.Concrete.Contexts.EntityFramework.Mappings
+namespace DataAccess.Concrete.EntityFramework.Mappings
 {
     public class CurrencyMap : IEntityTypeConfiguration<Currency>
     {

@@ -11,7 +11,6 @@ namespace EVDS.Services.Concrete
 {
     public class EvdsCurrencyManager : IEvdsCurrencyService
     {
-
         public async Task<IList<EvdsCurrency>> GetList(ResponseTypes responseType = ResponseTypes.Json)
         {
             HttpClient client = new HttpClient();
@@ -24,15 +23,7 @@ namespace EVDS.Services.Concrete
 
             HttpResponseMessage response = await client.GetAsync(uri);
             string contentString = await response.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonConvert.DeserializeObject<List<EvdsCurrency>>(contentString);
-            }
-            catch (Exception ex)
-            {
-                var x = ex;
-                throw;
-            }
+            return JsonConvert.DeserializeObject<List<EvdsCurrency>>(contentString);
         }
     }
 }

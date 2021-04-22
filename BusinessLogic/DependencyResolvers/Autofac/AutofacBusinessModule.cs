@@ -2,7 +2,7 @@
 using BusinessLogic.Abstract;
 using BusinessLogic.Concrete;
 using DataAccess.Abstract;
-using DataAccess.Concrete.Contexts.EntityFramework;
+using DataAccess.Concrete.EntityFramework;
 using EVDS.Services.Abstraction;
 using EVDS.Services.Concrete;
 
@@ -14,6 +14,10 @@ namespace BusinessLogic.DependencyResolvers.Autofac
         {
             builder.RegisterType<CurrencyManager>().As<ICurrencyService>();
             builder.RegisterType<EfCurrencyDal>().As<ICurrencyDal>();
+
+            builder.RegisterType<CurrencyRatingManager>().As<ICurrencyRatingService>();
+            builder.RegisterType<EfCurrencyRatingDal>().As<ICurrencyRatingDal>();
+
             builder.RegisterType<EvdsService>().As<IEvdsService>();
 
         }

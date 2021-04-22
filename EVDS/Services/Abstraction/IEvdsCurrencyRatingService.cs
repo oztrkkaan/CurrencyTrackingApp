@@ -8,7 +8,8 @@ namespace EVDS.Services.Abstraction
 {
     public interface IEvdsCurrencyRatingService
     {
-        Task<IList<EvdsCurrencyRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType);
+        Task<IList<EvdsCurrencyRating>> GetByCodeAndDate(string currencyCode, string OperationType, DateTime startDate, DateTime? endDate, ResponseTypes responseType = ResponseTypes.Json);
+
 
     }
 }

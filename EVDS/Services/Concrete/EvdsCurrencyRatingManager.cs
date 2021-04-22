@@ -1,6 +1,7 @@
 ﻿using EVDS.Constants.Enums;
 using EVDS.Entities;
 using EVDS.Services.Abstraction;
+using EVDS.Utilities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,14 @@ namespace EVDS.Services.Concrete
 {
     public class EvdsCurrencyRatingManager : IEvdsCurrencyRatingService
     {
-        public async Task<IList<EvdsCurrencyRating>> GetListBySerieCodesAndDate(string[] serieCodes, DateTime startDate, DateTime endDate, ResponseTypes responseType)
+        public async Task<IList<EvdsCurrencyRating>> GetByCodeAndDate(string currencyCode, string operationType, DateTime startDate, DateTime? endDate, ResponseTypes responseType = ResponseTypes.Json)
         {
             HttpClient client = new HttpClient();
 
             var uri = Options.Host + Options.Path
-               + "series=" + string.Join("-", serieCodes.Take(3))
+               + "series=" + StringHelper.SerieCodeGenerator(currencyCode, operationType)
                + "&startDate=" + startDate.ToString("dd-MM-yyyy")
-               + "&endDate=" + endDate.ToString("dd-MM-yyyy")
+               + (endDate.HasValue ? "&endDate=" + endDate.Value.ToString("dd-MM-yyyy") : "")
                + "&type=" + responseType.ToString().ToLower()
                + "&key=" + Options.ApiKey;
 
@@ -39,9 +40,12 @@ namespace EVDS.Services.Concrete
                 foreach (var property in item.Properties())
                 {
                     var regularPropertyName = property.Name.Replace("_", ".");
-                    if (serieCodes.Any(m => m == regularPropertyName))
+                    if (StringHelper.SerieCodeGenerator(currencyCode, operationType) == regularPropertyName)
                     {
                         newSerieRating = new EvdsCurrencyRating();
+                        newSerieRating.CurrencyCode = currencyCode;
+                        newSerieRating.OperationType = operationType;
+
                         newSerieRating.Date = DateTime.ParseExact(dateValue, "dd-MM-yyyy", CultureInfo.InvariantCulture);
                         newSerieRating.SerieCode = regularPropertyName;
                         newSerieRating.Rating = (decimal?)property.Value;
@@ -53,5 +57,6 @@ namespace EVDS.Services.Concrete
 
             return serieRatingList;
         }
+
     }
 }

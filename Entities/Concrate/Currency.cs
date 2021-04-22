@@ -9,7 +9,7 @@ namespace Entities.Concrate
         public string Name { get; set; }
         public string Code { get; set; }
         public string OperationType { get; set; }
-        public ICollection<CurrencyRating> CurrencyRates { get; set; }
+        public ICollection<CurrencyRating> CurrencyRatings { get; set; }
 
     }
 }

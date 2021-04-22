@@ -2,6 +2,7 @@
 using Entities.Concrate;
 using Entities.Dtos;
 using System;
+using System.Collections.Generic;
 
 namespace BusinessLogic.Utilities.AutoMapper
 {
@@ -24,8 +25,17 @@ namespace BusinessLogic.Utilities.AutoMapper
         {
             public MappingProfile()
             {
+                CreateMap<CurrencyRating, CurrencyRatingDto>();
+                CreateMap<CurrencyRatingDto, CurrencyRating>();
+
+               
+
                 CreateMap<Currency, CurrencyDto>();
                 CreateMap<CurrencyDto, Currency>();
+
+
+                CreateMap<List<CurrencyRating>, List<CurrencyRatingDto>>();
+                CreateMap<List<CurrencyRatingDto>, List<CurrencyRating>>();
 
             }
         }
