@@ -12,5 +12,6 @@ namespace BusinessLogic.Abstract
     {
         IDataResult<Currency> Create(CurrencyDto currencyDto);
         IDataResult<Currency> Get(Expression<Func<Currency, bool>> filter);
+        Task<IDataResult<IList<CurrencyDto>>> GetListWithActualRatings();
     }
 }

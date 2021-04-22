@@ -59,8 +59,24 @@ namespace WEBUI.Controllers
         {
             model.CurrencyDto = Mapping.Mapper.Map<CurrencyDto>(_currencyService.Get(m => m.Id == model.CurrencyDto.Id).Data);
             model.CurrencyRatingDtos = Mapping.Mapper.Map<IList<CurrencyRatingDto>>(_currencyRatingService.GetListByCurrenyIdAndDate(model.CurrencyDto.Id, model.StartDate, model.EndDate).Data);
-            var currencyRatings= await _currencyRatingService.SaveListFromEvds(model.CurrencyDto.Id, model.StartDate, model.EndDate);
+            var currencyRatings = await _currencyRatingService.SaveListFromEvds(model.CurrencyDto.Id, model.StartDate, model.EndDate);
             model.CurrencyRatingDtos = Mapping.Mapper.Map<IList<CurrencyRatingDto>>(currencyRatings.Data);
+
+            this.AddToastrMessage("Veriler Listelendi", $"{model.CurrencyRatingDtos.Count} satır veri listelendi.", ToastrEnum.Type.Success);
+            return View(model);
+        }
+
+        public async Task<IActionResult> CurrencyList()
+        {
+            CurrencyListViewModel model = new CurrencyListViewModel();
+            model.Currencies = (await _currencyService.GetListWithActualRatings()).Data;
+            return View(model);
+        }
+        
+        public IActionResult CurrencyChart(int currencyId)
+        {
+            CurrencyChartViewModel model = new CurrencyChartViewModel();
+            model.CurrencyDto = Mapping.Mapper.Map<CurrencyDto>(_currencyService.Get(m => m.Id == currencyId).Data);
             return View(model);
         }
 

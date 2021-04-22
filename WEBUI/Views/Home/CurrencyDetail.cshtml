@@ -8,14 +8,34 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container">
+
+        <a href="#" class="btn btn-info me-2 mb-2">
+
+            <span class="svg-icon svg-icon-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path opacity="0.25" d="M1 5C1 3.89543 1.89543 3 3 3H21C22.1046 3 23 3.89543 23 5V19C23 20.1046 22.1046 21 21 21H3C1.89543 21 1 20.1046 1 19V5Z" fill="#12131A" />
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8682 6.49631C21.1422 6.01679 20.9756 5.40594 20.4961 5.13193C20.0166 4.85792 19.4058 5.02451 19.1317 5.50403L15.8834 11.1886C15.6612 11.5775 15.2073 11.7712 14.7727 11.6626L9.71238 10.3975C8.40847 10.0715 7.04688 10.6526 6.38005 11.8195L3.13174 17.504C2.85773 17.9835 3.02433 18.5944 3.50385 18.8684C3.98337 19.1424 4.59422 18.9758 4.86823 18.4963L8.11653 12.8118C8.33881 12.4228 8.79268 12.2291 9.22731 12.3378L14.2876 13.6028C15.5915 13.9288 16.9531 13.3478 17.6199 12.1808L20.8682 6.49631Z" fill="#12131A" />
+                </svg>
+            </span>
+            (@Model.CurrencyDto.Name)   Grafik Üzerinde Gör
+        </a>
+
+        <a asp-action="CurrencyList" class="btn btn-warning me-2 mb-2">
+            <!--begin::Svg Icon | path: icons/duotone/Design/Image.svg-->
+            <span class="svg-icon svg-icon-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <circle opacity="0.25" cx="12" cy="12" r="10" fill="#12131A" />
+                    <path d="M11 5C11 4.44772 11.4477 4 12 4C12.5523 4 13 4.44772 13 5V6C14.6569 6 16 7.34315 16 9C16 9.55229 15.5523 10 15 10C14.4477 10 14 9.55229 14 9C14 8.44772 13.5523 8 13 8H11C10.4477 8 10 8.44771 10 9V9.55848C10 9.98891 10.2754 10.3711 10.6838 10.5072L13.9487 11.5955C15.1737 12.0038 16 13.1502 16 14.4415V15C16 16.6569 14.6569 18 13 18V19C13 19.5523 12.5523 20 12 20C11.4477 20 11 19.5523 11 19V18C9.34315 18 8 16.6569 8 15C8 14.4477 8.44771 14 9 14C9.55229 14 10 14.4477 10 15C10 15.5523 10.4477 16 11 16H13C13.5523 16 14 15.5523 14 15V14.4415C14 14.0111 13.7246 13.6289 13.3162 13.4928L10.0513 12.4045C8.82629 11.9962 8 10.8498 8 9.55848V9C8 7.34315 9.34315 6 11 6V5Z" fill="#12131A" />
+                </svg>
+            </span>
+            Para Birimi Listelerine Dön
+        </a>
+
         <form asp-action="CurrencyDetail" method="post">
             <input type="hidden" asp-for="CurrencyDto.Id" />
             <div class="card shadow">
                 <div class="card-header">
-                    <h3 class="card-title">İki Tarih Arasındaki Kur Değerlerini Kaydet</h3>
-                    <div class="card-toolbar">
-                        <button type="button" class="btn btn-sm btn-light">Action</button>
-                    </div>
+                    <h3 class="card-title">@Model.CurrencyDto.Name (@Model.CurrencyDto.Code - @CurrencyEnum.GetCurrencyTypeByOperationType(Model.CurrencyDto.OperationType).Text) İçin Kur Değerleri</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">
